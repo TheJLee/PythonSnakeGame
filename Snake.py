@@ -1,18 +1,34 @@
-import pygame as pygame
-
 class Player:
     def __init__(self):
-        self.__x = 10
-        self.__y = 10
+        self.x = 250
+        self.y = 250
+        self.direction = "DOWN"
+        self.body = [(self.x,self.y)]
 
     def moveleft(self):
-        self.__x -= 1
+        self.x -= 1
 
     def moveright(self):
-        self.__x += 1
+        self.x += 1
 
     def moveup(self):
-        self.__y += 1
+        self.y -= 1
 
     def movedown(self):
-        self.__y -= 1
+        self.y += 1
+
+    def move(self):
+        if self.direction == "DOWN":
+            self.movedown()
+        elif self.direction == "UP":
+            self.moveup()
+        elif self.direction == "LEFT":
+            self.moveleft()
+        elif self.direction == "RIGHT":
+            self.moveright()
+
+    def checkeat(self, food):
+        if (food.x, food.y) == (self.x, self.y):
+            return True
+        else:
+            return False
