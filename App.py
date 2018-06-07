@@ -13,24 +13,23 @@ class App:
 
     def run(self):
         pygame.init()
-        clock = pygame.time.Clock()
-        self.setfps(clock,60)
         self.setupdisplay()
 
         while True:
 
-            self.insertsquare()
-            self.checkinput()
             self.__Snake.move()
+            self.checkinput()
+            self.insertsquare()
             self.__Display.fill((0, 0, 0))
-            time.sleep(3.0 / 1000.0);
+            time.sleep(6.0 / 1000.0);
 
     def insertsquare(self):
         if(self.__Snake.checkeat(self.__Food)):
             pygame.draw.rect(self.__Display, (25, 200, 150), pygame.Rect(self.__Food.randomize(), (SIZE, SIZE)))
         else:
             pygame.draw.rect(self.__Display, (25, 200, 150), pygame.Rect((self.__Food.x, self.__Food.y), (SIZE, SIZE)))
-        pygame.draw.rect(self.__Display, (100, 200, 0), pygame.Rect((self.__Snake.x, self.__Snake.y), (SIZE, SIZE)))
+        for snakebody in self.__Snake.body:
+            pygame.draw.rect(self.__Display, (100, 200, 0), pygame.Rect((snakebody[0], snakebody[1]), (SIZE, SIZE)))
         pygame.display.update()
 
     def setupdisplay(self):
@@ -39,9 +38,6 @@ class App:
         pygame.draw.rect(self.__Display, (100, 200, 0), pygame.Rect((self.__Snake.x, self.__Snake.y), (SIZE, SIZE)))
         pygame.draw.rect(self.__Display, (25, 200, 150), pygame.Rect((self.__Food.randomize()), (SIZE, SIZE)))
         pygame.display.update()
-
-    def setfps(self, clock, fps):
-        clock.tick(fps)
 
     def checkinput(self):
         for event in pygame.event.get():

@@ -4,6 +4,7 @@ class Player:
         self.y = 250
         self.direction = "DOWN"
         self.body = [(self.x,self.y)]
+        self.bodylength = self.body.__len__()
 
     def moveleft(self):
         self.x -= 1
@@ -26,9 +27,15 @@ class Player:
             self.moveleft()
         elif self.direction == "RIGHT":
             self.moveright()
+        self.updatebody()
+
+    def updatebody(self):
+        self.body.insert(0,(self.x,self.y))
+        self.body = self.body[:self.bodylength]
 
     def checkeat(self, food):
         if (food.x, food.y) == (self.x, self.y):
+            self.bodylength += 1
             return True
         else:
             return False
