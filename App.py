@@ -21,7 +21,7 @@ class App:
             self.checkinput()
             self.insertsquare()
             self.__Display.fill((0, 0, 0))
-            time.sleep(130.0 / 1000.0);
+            time.sleep(100.0 / 1000.0);
 
     def insertsquare(self):
         if(self.__Snake.checkeat(self.__Food)):

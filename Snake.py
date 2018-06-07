@@ -7,16 +7,16 @@ class Player:
         self.bodylength = self.body.__len__()
 
     def moveleft(self):
-        self.x -= 31
+        self.x -= 21
 
     def moveright(self):
-        self.x += 31
+        self.x += 21
 
     def moveup(self):
-        self.y -= 31
+        self.y -= 21
 
     def movedown(self):
-        self.y += 31
+        self.y += 21
 
     def move(self):
         if self.direction == "DOWN":
@@ -35,8 +35,8 @@ class Player:
 
     def checkeat(self, food):
 #        if (food.x, food.y) == (self.x, self.y):
-        if(food.x >= self.x and food.x <= self.x + 30):
-            if (food.y >= self.y and food.y <= self.y + 30):
+        if(food.x >= self.x and food.x <= self.x + 21):
+            if (food.y >= self.y and food.y <= self.y + 21):
                 self.bodylength += 1
                 return True
         else:
